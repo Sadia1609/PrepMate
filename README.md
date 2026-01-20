@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PrepMate – Frontend Interview Prep App (Next.js App Router)
 
-## Getting Started
+PrepMate is a simple and responsive frontend interview preparation app built with **Next.js 15/16 (App Router)** and **Tailwind CSS**.  
+It allows users to practice interview questions (React/JavaScript/CSS), view question details, and track learning progress (Strong/Weak) using local storage.
 
-First, run the development server:
+---
+
+## 🚀 Live Demo
+
+Deployed on Vercel (Add your link here)
+
+---
+
+## ✅ Features Implemented
+
+### ✅ Landing Page (Public)
+
+- Modern landing page UI with **7 sections** (Navbar + Footer excluded)
+- Navigation links to Login and Questions page
+- Fully responsive layout
+
+### ✅ Authentication (Mock)
+
+- Hardcoded email/password login
+- Stores login status in cookies (`auth=true`)
+- Redirects to Questions list page after login
+- Dashboard is protected (client-side protection)
+
+### ✅ Questions List Page (Public)
+
+- Displays questions list from internal JSON data through API
+- Each card shows category, difficulty and short summary
+- View details button for each question
+
+### ✅ Question Details Page (Public)
+
+- Shows full details of a single question
+- Mark question as:
+  - **Strong ✅**
+  - **Weak ⚠️**
+- Shows **More from same category (up to 20 questions)**
+
+### ✅ Dashboard Page (Protected)
+
+- Shows total progress:
+  - Total questions
+  - Completed questions
+  - Strong count
+  - Weak count
+- Displays a progress bar
+- Shows a list of Weak questions (quick access)
+
+---
+
+## 🧾 Demo Login Credentials
+
+Use the following credentials to login:
+
+- **Email:** `sadia@gmail.com`
+- **Password:** `123456`
+
+---
+
+## 🛠️ Technologies Used
+
+- Next.js 15/16 (App Router)
+- React.js
+- Tailwind CSS
+- Cookie-based mock authentication
+- Local Storage (Progress tracking)
+- JSON-based data (question list)
+
+---
+
+## 📌 Routes Summary
+
+| Route             | Type      | Description                  |
+| ----------------- | --------- | ---------------------------- |
+| `/`               | Public    | Landing page (7 sections)    |
+| `/login`          | Public    | Mock login page              |
+| `/questions`      | Public    | Question list page           |
+| `/questions/[id]` | Public    | Single question details page |
+| `/dashboard`      | Protected | User progress dashboard      |
+
+---
+
+## ⚙️ Setup & Installation
+
+1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
