@@ -32,20 +32,10 @@
 // }
 import SectionTitle from "@/components/SectionTitle";
 import QuestionCard from "@/components/QuestionCard";
-import { getBaseUrl } from "@/utils/baseUrl";
 import Badge from "@/components/Badge";
+import { questions } from "@/data/questions";
 
-export const dynamic = "force-dynamic";
-
-export default async function QuestionsPage() {
-  const baseUrl = getBaseUrl();
-
-  const res = await fetch(`${baseUrl}/api/questions`, {
-    cache: "no-store",
-  });
-
-  const questions = await res.json();
-
+export default function QuestionsPage() {
   // Group by category for filtering
   const categories = [...new Set(questions.map((q) => q.category))];
 
