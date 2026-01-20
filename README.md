@@ -7,7 +7,7 @@ It allows users to practice interview questions (React/JavaScript/CSS), view que
 
 ## 🚀 Live Demo
 
-Deployed on Vercel (Add your link here)
+Deployed on Vercel: https://prep-mate-orpin.vercel.app/
 
 ---
 
