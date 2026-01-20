@@ -12,6 +12,8 @@ export function middleware(request) {
 
   if (!isLoggedIn) {
     const loginUrl = new URL("/login", request.url);
+    // Add redirect parameter so login knows where to go back
+    loginUrl.searchParams.set('redirect', pathname);
     return NextResponse.redirect(loginUrl);
   }
 

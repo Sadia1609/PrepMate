@@ -2,25 +2,22 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Button from "@/components/Button";
 import SectionTitle from "@/components/SectionTitle";
 import { AUTH_EMAIL, AUTH_PASS, setAuthCookie } from "@/utils/auth";
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
 
-  // Check if already logged in (disabled to prevent redirect loop)
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     router.replace("/questions");
-  //   }
-  // }, [isLoggedIn, router]);
+  // Get redirect URL from query params or default to home
+  const redirectTo = searchParams.get('redirect') || '/';
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -44,9 +41,9 @@ export default function LoginPage() {
       // Also update localStorage to ensure immediate effect
       localStorage.setItem('auth', 'true');
       
-      // ✅ Redirect after ensuring everything is set
+      // ✅ Redirect to the intended page or home
       setTimeout(() => {
-        window.location.href = "/dashboard";
+        window.location.href = redirectTo;
       }, 1500);
     } else {
       setError("Invalid email or password. Please try again.");
@@ -279,7 +276,7 @@ export default function LoginPage() {
                     />
                   </svg>
                   <p className="text-sm text-green-700 font-medium">
-                    Login successful! Redirecting to dashboard...
+                    Login successful! Redirecting to {redirectTo === '/dashboard' ? 'dashboard' : 'home page'}...
                   </p>
                 </div>
               </div>
