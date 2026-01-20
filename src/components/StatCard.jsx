@@ -1,14 +1,4 @@
-// export default function StatCard({ title, value, subtitle }) {
-//   return (
-//     <div className="bg-white border rounded-2xl p-4">
-//       <p className="text-sm text-slate-500">{title}</p>
-//       <p className="text-2xl font-bold mt-1">{value}</p>
-//       {subtitle ? (
-//         <p className="text-xs text-slate-500 mt-1">{subtitle}</p>
-//       ) : null}
-//     </div>
-//   );
-// }
+
 export default function StatCard({ title, value, subtitle }) {
   return (
     <div className="group relative bg-white rounded-2xl border border-gray-200 p-5 sm:p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1">

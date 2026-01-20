@@ -1,90 +1,4 @@
-// "use client";
 
-// import { useState } from "react";
-// import { useRouter } from "next/navigation";
-// import Button from "@/components/Button";
-// import SectionTitle from "@/components/SectionTitle";
-// import { AUTH_EMAIL, AUTH_PASS, setAuthCookie } from "@/utils/auth";
-
-// export default function LoginPage() {
-//   const router = useRouter();
-//   const [email, setEmail] = useState("");
-//   const [pass, setPass] = useState("");
-//   const [error, setError] = useState("");
-
-//   const handleLogin = (e) => {
-//     e.preventDefault();
-//     setError("");
-
-//     if (email === AUTH_EMAIL && pass === AUTH_PASS) {
-//       // ✅ set cookie
-//       setAuthCookie();
-
-//       // ✅ redirect to list page
-//       router.push("/questions");
-
-//       // ✅ important: refresh to update server components (Navbar cookie read)
-//       router.refresh();
-//     } else {
-//       setError("Wrong email or password ❌");
-//     }
-//   };
-
-//   return (
-//     <div className="max-w-xl mx-auto space-y-6">
-//       <section className="bg-white border rounded-2xl p-6">
-//         <SectionTitle
-//           title="Login"
-//           subtitle="Mock login using hardcoded credentials (cookie auth)."
-//         />
-
-//         <div className="bg-slate-50 border rounded-2xl p-4 text-sm">
-//           <p className="font-semibold">Demo Credentials</p>
-//           <p className="text-slate-600 mt-1">
-//             Email: <span className="font-semibold">{AUTH_EMAIL}</span>
-//           </p>
-//           <p className="text-slate-600">
-//             Password: <span className="font-semibold">{AUTH_PASS}</span>
-//           </p>
-//         </div>
-
-//         <form onSubmit={handleLogin} className="mt-5 space-y-4">
-//           <div>
-//             <label className="text-sm font-semibold">Email</label>
-//             <input
-//               value={email}
-//               onChange={(e) => setEmail(e.target.value)}
-//               type="email"
-//               className="w-full mt-2 border rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-indigo-500"
-//               placeholder="Enter email"
-//               required
-//             />
-//           </div>
-
-//           <div>
-//             <label className="text-sm font-semibold">Password</label>
-//             <input
-//               value={pass}
-//               onChange={(e) => setPass(e.target.value)}
-//               type="password"
-//               className="w-full mt-2 border rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-indigo-500"
-//               placeholder="Enter password"
-//               required
-//             />
-//           </div>
-
-//           {error ? (
-//             <p className="text-sm text-red-600 font-semibold">{error}</p>
-//           ) : null}
-
-//           <Button type="submit" className="w-full">
-//             Login
-//           </Button>
-//         </form>
-//       </section>
-//     </div>
-//   );
-// }
 "use client";
 
 import { useState, useEffect } from "react";
@@ -124,18 +38,15 @@ export default function LoginPage() {
       setLoginSuccess(true);
       setError("");
       
-      // ✅ Manually trigger navbar update
-      setTimeout(() => {
-        // Force navbar to update by dispatching event
-        window.dispatchEvent(new Event('authchange'));
-        
-        // Also update localStorage to ensure immediate effect
-        localStorage.setItem('auth', 'true');
-      }, 100);
+      // ✅ Manually trigger navbar update immediately
+      window.dispatchEvent(new Event('authchange'));
+      
+      // Also update localStorage to ensure immediate effect
+      localStorage.setItem('auth', 'true');
       
       // ✅ Redirect after ensuring everything is set
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/dashboard";
       }, 1500);
     } else {
       setError("Invalid email or password. Please try again.");

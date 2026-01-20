@@ -1,15 +1,4 @@
-// export default function ProgressBar({ percent = 0 }) {
-//   const safe = Math.min(100, Math.max(0, percent));
 
-//   return (
-//     <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
-//       <div
-//         className="h-3 bg-indigo-600 rounded-full transition-all"
-//         style={{ width: `${safe}%` }}
-//       />
-//     </div>
-//   );
-// }
 export default function ProgressBar({ percent = 0 }) {
   const safe = Math.min(100, Math.max(0, percent));
 

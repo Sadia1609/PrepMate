@@ -1,42 +1,4 @@
-// import Link from "next/link";
-// import Badge from "@/components/Badge";
 
-// export default function QuestionCard({ q }) {
-//   return (
-//     <div className="bg-white border rounded-2xl overflow-hidden hover:shadow-sm transition">
-//       <img src={q.image} alt={q.title} className="h-40 w-full object-cover" />
-
-//       <div className="p-4">
-//         <div className="flex gap-2 flex-wrap">
-//           <Badge tone="indigo">{q.category}</Badge>
-//           <Badge
-//             tone={
-//               q.difficulty === "Easy"
-//                 ? "green"
-//                 : q.difficulty === "Medium"
-//                   ? "yellow"
-//                   : "red"
-//             }
-//           >
-//             {q.difficulty}
-//           </Badge>
-//         </div>
-
-//         <h3 className="font-bold mt-2">{q.title}</h3>
-//         <p className="text-sm text-slate-600 mt-1 line-clamp-2">{q.short}</p>
-
-//         <div className="flex items-center justify-between mt-4">
-//           <Link
-//             href={`/questions/${q.id}`}
-//             className="text-sm font-semibold text-indigo-600 hover:underline"
-//           >
-//             View Details →
-//           </Link>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
 import Link from "next/link";
 import Badge from "@/components/Badge";
 

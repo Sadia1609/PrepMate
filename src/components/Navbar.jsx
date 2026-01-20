@@ -1,91 +1,16 @@
-// import Link from "next/link";
-// import { cookies } from "next/headers";
-// import LogoutButton from "@/components/LogoutButton";
 
-// export default async function Navbar() {
-//   // ✅ Next.js 15/16: cookies() is async
-//   const cookieStore = await cookies();
-//   const auth = cookieStore.get("auth");
-//   const isLoggedIn = auth?.value === "true";
-
-//   return (
-//     <header className="sticky top-0 z-50 border-b bg-white/90 backdrop-blur">
-//       <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-//         <Link href="/" className="font-bold text-indigo-600 text-lg">
-//           PrepMate
-//         </Link>
-
-//         {/* Desktop */}
-//         <div className="hidden md:flex gap-2 items-center">
-//           <Link
-//             href="/"
-//             className="px-3 py-2 rounded-xl text-sm font-semibold hover:bg-slate-100"
-//           >
-//             Home
-//           </Link>
-
-//           <Link
-//             href="/questions"
-//             className="px-3 py-2 rounded-xl text-sm font-semibold hover:bg-slate-100"
-//           >
-//             Questions
-//           </Link>
-
-//           <Link
-//             href="/login"
-//             className="px-3 py-2 rounded-xl text-sm font-semibold hover:bg-slate-100"
-//           >
-//             Login
-//           </Link>
-
-//           <Link
-//             href="/dashboard"
-//             className="px-3 py-2 rounded-xl text-sm font-semibold hover:bg-slate-100"
-//           >
-//             Dashboard
-//           </Link>
-
-//           {/* ✅ server reads cookie correctly */}
-//           {isLoggedIn ? <LogoutButton /> : null}
-//         </div>
-
-//         {/* Mobile */}
-//         <div className="md:hidden flex gap-2 items-center">
-//           <Link
-//             href="/login"
-//             className="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100"
-//           >
-//             Login
-//           </Link>
-
-//           <Link
-//             href="/questions"
-//             className="px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-600 text-white"
-//           >
-//             Questions
-//           </Link>
-
-//           {isLoggedIn ? (
-//             <div className="bg-slate-100 rounded-xl">
-//               <LogoutButton />
-//             </div>
-//           ) : null}
-//         </div>
-//       </nav>
-//     </header>
-//   );
-// }
 
 "use client";
 
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import LogoutButton from "@/components/LogoutButton";
 
 export default function Navbar() {
   // Initialize with false to match server-side rendering
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [hasCheckedAuth, setHasCheckedAuth] = useState(false);
+  const pathname = usePathname();
 
   // Memoized auth check function
   const checkAuth = useCallback(() => {
@@ -101,19 +26,27 @@ export default function Navbar() {
       
       const loggedIn = localAuth || cookieAuth;
       
-      // Update auth state
-      setIsLoggedIn(loggedIn);
-      
-      // Mark that we've checked auth at least once
-      if (!hasCheckedAuth) {
-        setHasCheckedAuth(true);
-      }
+      // Update auth state only if it changed
+      setIsLoggedIn(prevState => {
+        if (prevState !== loggedIn) {
+          return loggedIn;
+        }
+        return prevState;
+      });
     }
-  }, [hasCheckedAuth]);
+  }, []);
+
+  // Check auth whenever pathname changes (navigation)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      checkAuth();
+    }, 0);
+    return () => clearTimeout(timer);
+  }, [pathname, checkAuth]);
 
   useEffect(() => {
-    // Initial auth check with timeout to avoid React warning
-    const timer = setTimeout(() => {
+    // Initial auth check
+    const initialTimer = setTimeout(() => {
       checkAuth();
     }, 0);
 
@@ -126,11 +59,11 @@ export default function Navbar() {
     window.addEventListener('storage', handleAuthChange);
     window.addEventListener('focus', handleAuthChange);
 
-    // Periodic check as fallback
-    const interval = setInterval(checkAuth, 2000);
+    // More frequent check for better responsiveness
+    const interval = setInterval(checkAuth, 500);
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(initialTimer);
       window.removeEventListener('authchange', handleAuthChange);
       window.removeEventListener('storage', handleAuthChange);
       window.removeEventListener('focus', handleAuthChange);

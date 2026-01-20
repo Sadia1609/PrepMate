@@ -1,13 +1,4 @@
-// export default function SectionTitle({ title, subtitle }) {
-//   return (
-//     <div className="mb-2">
-//       <h2 className="text-xl md:text-2xl font-bold">{title}</h2>
-//       {subtitle ? (
-//         <p className="text-slate-600 mt-1 text-sm md:text-base">{subtitle}</p>
-//       ) : null}
-//     </div>
-//   );
-// }
+
 export default function SectionTitle({ title, subtitle }) {
   return (
     <div className="mb-8 sm:mb-10">

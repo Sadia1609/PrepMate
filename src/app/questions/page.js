@@ -1,35 +1,4 @@
-// import SectionTitle from "@/components/SectionTitle";
-// import QuestionCard from "@/components/QuestionCard";
-// import { getBaseUrl } from "@/utils/baseUrl";
 
-// export const dynamic = "force-dynamic";
-
-// export default async function QuestionsPage() {
-//   const baseUrl = getBaseUrl();
-
-//   const res = await fetch(`${baseUrl}/api/questions`, {
-//     cache: "no-store",
-//   });
-
-//   const questions = await res.json();
-
-//   return (
-//     <div className="space-y-6">
-//       <section className="bg-white border rounded-2xl p-6">
-//         <SectionTitle
-//           title="Interview Questions"
-//           subtitle="Public page. Questions loaded from JSON API."
-//         />
-//       </section>
-
-//       <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-//         {questions.map((q) => (
-//           <QuestionCard key={q.id} q={q} />
-//         ))}
-//       </section>
-//     </div>
-//   );
-// }
 import SectionTitle from "@/components/SectionTitle";
 import QuestionCard from "@/components/QuestionCard";
 import Badge from "@/components/Badge";

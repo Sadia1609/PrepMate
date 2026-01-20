@@ -1,35 +1,4 @@
-// import { Geist, Geist_Mono } from "next/font/google";
-// import "./globals.css";
-// import Navbar from "@/components/Navbar";
-// import Container from "@/components/Container";
-// import Footer from "@/components/Footer";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-// export const metadata = {
-//   title: "PrepMate",
-//   description: "Frontend Interview Prep App",
-// };
-
-// export default function RootLayout({ children }) {
-//   return (
-//     <html lang="en">
-//       <body className="min-h-screen bg-slate-50 text-slate-900">
-//         <Navbar />
-//         <Container>{children}</Container>
-//         <Footer className="border-t bg-white"></Footer>
-//       </body>
-//     </html>
-//   );
-// }
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";

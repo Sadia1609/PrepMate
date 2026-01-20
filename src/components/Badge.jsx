@@ -1,20 +1,4 @@
-// export default function Badge({ children, tone = "neutral" }) {
-//   const styles = {
-//     neutral: "bg-slate-100 text-slate-700",
-//     indigo: "bg-indigo-100 text-indigo-700",
-//     green: "bg-green-100 text-green-700",
-//     red: "bg-red-100 text-red-700",
-//     yellow: "bg-yellow-100 text-yellow-700",
-//   };
 
-//   return (
-//     <span
-//       className={`px-2 py-1 rounded-full text-xs font-semibold ${styles[tone]}`}
-//     >
-//       {children}
-//     </span>
-//   );
-// }
 export default function Badge({ children, tone = "neutral" }) {
   const styles = {
     neutral: "bg-gray-100 text-gray-700 border border-gray-200",

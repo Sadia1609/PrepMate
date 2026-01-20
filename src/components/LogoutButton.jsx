@@ -1,25 +1,4 @@
-// "use client";
 
-// import { useRouter } from "next/navigation";
-
-// export default function LogoutButton() {
-//   const router = useRouter();
-
-//   const logout = () => {
-//     document.cookie = "auth=; path=/; max-age=0";
-//     router.push("/login");
-//     router.refresh(); // ✅ refresh navbar server cookie
-//   };
-
-//   return (
-//     <button
-//       onClick={logout}
-//       className="px-3 py-2 rounded-xl text-sm font-semibold hover:bg-slate-100"
-//     >
-//       Logout
-//     </button>
-//   );
-// }
 "use client";
 
 import { useRouter } from "next/navigation";
